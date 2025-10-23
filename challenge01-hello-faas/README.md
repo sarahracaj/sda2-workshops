@@ -10,8 +10,8 @@ Click "Fork" button (top right on GitHub)
 
 ### 2. Clone to your machine
 ```bash
-git clone https://github.com/YOUR-USERNAME/sda2-challenge1-hello-faas.git
-cd sda2-challenge1-hello-faas
+git clone https://github.com/bfh-teaching/sda2-workshops.git
+cd sda2-workshops/sda2-challenge1-hello-faas
 ```
 
 ### 3. Test locally (optional)
@@ -28,7 +28,8 @@ Visit: http://localhost:8080/hello
 ### 4. Deploy to Coolify
 
 - Login to Coolify: https://coolify.ecys.ch
-- Click "New Service" → "Public Repository"
+- Create a new Project
+- Add a new Resource and choose Public Git Repo for that
 - Paste your forked repo URL
 - Add `challenge01-hello-faas` as your base path, because all challenges are in the same repo
 - Set port: 8080
