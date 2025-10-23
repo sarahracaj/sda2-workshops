@@ -27,9 +27,10 @@ Visit: http://localhost:8080/hello
 
 ### 4. Deploy to Coolify
 
-- Login to Coolify: [YOUR-COOLIFY-URL]
+- Login to Coolify: https://coolify.ecys.ch
 - Click "New Service" → "Public Repository"
 - Paste your forked repo URL
+- Add `challenge01-hello-faas` as your base path, because all challenges are in the same repo
 - Set port: 8080
 - Click "Deploy"
 
