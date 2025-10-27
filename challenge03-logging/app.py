@@ -138,6 +138,20 @@ def error_endpoint():
 # Track: request received, validation, processing steps, response
 # Your code goes below this line
 
+@app.route('/process', methods=['POST'])
+def process_data():
+    data = request.get_json()
+
+    if not data or 'data' not in data:
+        print("❌ Failed request: missing 'data' field")
+        return jsonify({"error": "Missing 'data' field"}), 400
+
+    print(f"✅ Received data: {data['data']}")
+    return jsonify({
+        "status": "success",
+        "processed_data": data['data'].upper()
+    })
+
 
 if __name__ == '__main__':
     log_event("service_started", port=8080)
