@@ -137,8 +137,8 @@ def error_endpoint():
 # TODO: Add a new endpoint with comprehensive logging
 # Track: request received, validation, processing steps, response
 # Your code goes below this line
-@app.route('/process', methods=['POST'])
-def process():
+@app.route('/process2', methods=['POST'])
+def process2():
     start_time = time.time()
     log_event("request_received", endpoint="/process")
 
