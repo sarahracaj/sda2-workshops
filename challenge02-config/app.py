@@ -58,6 +58,29 @@ def protected_endpoint():
 # TODO: Add /weather endpoint that uses WEATHER_API_KEY
 # Your code goes below this line
 
+@app.route('/weather', methods=['GET'])
+def get_weather():
+    """
+    Simulated weather endpoint that requires WEATHER_API_KEY.
+    Returns an error if the key is missing.
+    """
+    weather_api_key = os.getenv('WEATHER_API_KEY')
+
+    if not weather_api_key:
+        return jsonify({"error": "Missing WEATHER_API_KEY environment variable"}), 500
+
+    # Optionally: read a 'city' query param, default to 'Bern'
+    city = request.args.get('city', 'Bern')
+
+    # Simulate a weather response (instead of calling a real API)
+    fake_weather_data = {
+        "city": city,
+        "temperature": "15°C",
+        "condition": "Cloudy",
+        "source": "Simulated Data"
+    }
+
+    return jsonify(fake_weather_data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=DEBUG_MODE)
