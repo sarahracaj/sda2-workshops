@@ -137,20 +137,29 @@ def error_endpoint():
 # TODO: Add a new endpoint with comprehensive logging
 # Track: request received, validation, processing steps, response
 # Your code goes below this line
-
 @app.route('/process', methods=['POST'])
-def process_data():
-    data = request.get_json()
+def process():
+    start_time = time.time()
+    log_event("request_received", endpoint="/process")
 
-    if not data or 'data' not in data:
-        print("❌ Failed request: missing 'data' field")
-        return jsonify({"error": "Missing 'data' field"}), 400
+    try:
+        data = request.get_json()
 
-    print(f"✅ Received data: {data['data']}")
-    return jsonify({
-        "status": "success",
-        "processed_data": data['data'].upper()
-    })
+        # Beispielhafte Verarbeitung
+        result = {"processed_data": data.get("data", "").upper()}
+
+        duration = int((time.time() - start_time) * 1000)
+        log_event("request_success",
+                  endpoint="/process",
+                  duration_ms=duration)
+
+        return jsonify(result), 200
+
+    except Exception as e:
+        log_event("request_error",
+                  endpoint="/process",
+                  error=str(e))
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == '__main__':
